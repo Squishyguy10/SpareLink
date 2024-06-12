@@ -23,17 +23,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-              <Component id="importButton" min="-2" pref="102" max="-2" attributes="0"/>
-              <EmptySpace pref="1794" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="importButton" min="-2" pref="102" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                      <Component id="myTextField1" min="-2" pref="1153" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="1110" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="995" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+              <Component id="myTextField1" min="-2" pref="52" max="-2" attributes="0"/>
+              <EmptySpace pref="767" max="32767" attributes="0"/>
               <Component id="importButton" min="-2" pref="37" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
           </Group>
@@ -52,6 +62,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="importButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="SwingComponents.MyTextField" name="myTextField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="myTextField1"/>
+        <Property name="prefixIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/Search.png"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
