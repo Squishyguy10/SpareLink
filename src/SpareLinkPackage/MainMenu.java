@@ -4,7 +4,12 @@
  */
 package SpareLinkPackage;
 
+import SwingComponents.DataSearch;
+import SwingComponents.PanelSearch;
+import java.awt.Color;
+import java.awt.List;
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -16,8 +21,15 @@ public class MainMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
+    
+    private JPopupMenu menu;
+    private PanelSearch search;
     public MainMenu() {
         initComponents();
+        menu = new JPopupMenu();
+        search = new PanelSearch();    
+        menu.setBorder(BorderFactory.createLineBorder(new Color(164,164,164)));
+        menu.add(search);
     }
 
     /**
@@ -30,7 +42,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         importButton = new javax.swing.JButton();
-        myTextField1 = new SwingComponents.MyTextField();
+        textSearch = new SwingComponents.MyTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,8 +55,18 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        myTextField1.setText("myTextField1");
-        myTextField1.setPrefixIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Search.png"))); // NOI18N
+        textSearch.setText("myTextField1");
+        textSearch.setPrefixIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Search.png"))); // NOI18N
+        textSearch.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textSearchMouseClicked(evt);
+            }
+        });
+        textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                textSearchKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,16 +78,16 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(myTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1110, Short.MAX_VALUE))
+                        .addGap(160, 160, 160)
+                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1131, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(myTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 767, Short.MAX_VALUE)
+                .addGap(174, 174, 174)
+                .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 769, Short.MAX_VALUE)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -81,7 +103,35 @@ public class MainMenu extends javax.swing.JFrame {
         file = chooser.getSelectedFile();
         System.out.println(file.getName());
     }//GEN-LAST:event_importButtonActionPerformed
+
+    private void textSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textSearchMouseClicked
+        // TODO add your handling code here:
+        menu.show(textSearch, 0, textSearch.getHeight());
+    }//GEN-LAST:event_textSearchMouseClicked
+
+    private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
+        // TODO add your handling code here:
+        String text = textSearch.getText().trim().toLowerCase();
+        search.setData(search(text));
+        if(search.getItemSize()>0){
+            menu.show(textSearch, 0, textSearch.getHeight());
+        }
+    }//GEN-LAST:event_textSearchKeyReleased
     
+    private ArrayList<DataSearch> search(String search){
+        int dataLimit = 7;
+        ArrayList<DataSearch> list = new ArrayList<>();
+        String dataTesting[] = {"Aaron", "Angie","Aviare","Ricky","Ricky's Mom"};
+        for(String d: dataTesting){
+            if(d.toLowerCase().contains(search)){
+                list.add(new DataSearch(d, false));
+                if(list.size()== dataLimit){
+                    break;
+                }
+            }
+        }
+        return list;
+    }
     public static File getFile(){
         return file;
     }
@@ -122,6 +172,6 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton importButton;
-    private SwingComponents.MyTextField myTextField1;
+    private SwingComponents.MyTextField textSearch;
     // End of variables declaration//GEN-END:variables
 }
