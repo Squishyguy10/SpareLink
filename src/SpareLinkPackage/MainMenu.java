@@ -5,9 +5,13 @@
 package SpareLinkPackage;
 
 import SwingComponents.DataSearch;
+import SwingComponents.EventClick;
 import SwingComponents.PanelSearch;
 import java.awt.Color;
-import java.awt.List;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -22,14 +26,63 @@ public class MainMenu extends javax.swing.JFrame {
      * Creates new form MainMenu
      */
     
+    ArrayList<String> history = new ArrayList<>();
+    ArrayList<String> dataList = new ArrayList<>();
+    
     private JPopupMenu menu;
     private PanelSearch search;
+    
     public MainMenu() {
         initComponents();
+        dataList.add("Michael Johnson");
+        dataList.add("Sarah Smith");
+        dataList.add("Christopher Brown");
+        dataList.add("Jessica Martinez");
+        dataList.add("Matthew Lee");
+        dataList.add("Ashley Williams");
+        dataList.add("David Garcia");
+        dataList.add("Jennifer Rodriguez");
+        dataList.add("Daniel Davis");
+        dataList.add("Amanda Taylor");
+        dataList.add("James Moore");
+        dataList.add("Elizabeth Jackson");
+        dataList.add("John Wilson");
+        dataList.add("Emily White");
+        dataList.add("Robert Anderson");
+        dataList.add("Nicole Harris");
+        dataList.add("William Martin");
+        dataList.add("Lauren Thompson");
+        dataList.add("Joseph Clark");
+        dataList.add("Samantha Lewis");
+        
         menu = new JPopupMenu();
-        search = new PanelSearch();    
-        menu.setBorder(BorderFactory.createLineBorder(new Color(164,164,164)));
+        search = new PanelSearch();
+        menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
         menu.add(search);
+        menu.setFocusable(false);
+        search.addEventClick(new EventClick() {
+            @Override
+            public void itemClick(DataSearch data) {
+                // When item clicked
+                menu.setVisible(false);
+                textSearch.setText(data.getText());
+                history.add(data.getText());
+                System.out.println("Click Item : " + data.getText());
+                
+            }
+
+            @Override
+            public void itemRemove(Component com, DataSearch data) {
+                search.remove(com);
+                removeHistory(data.getText());
+                menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35));
+                if (search.getItemSize() == 0) {
+                    menu.setVisible(false);
+                }
+                System.out.println("Remove Item: " + data.getText());
+            }
+
+        });
     }
 
     /**
@@ -44,10 +97,12 @@ public class MainMenu extends javax.swing.JFrame {
         importButton = new javax.swing.JButton();
         textSearch = new SwingComponents.MyTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        importButton.setBackground(new java.awt.Color(255, 255, 254));
         importButton.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         importButton.setText("Import");
+        importButton.setBorder(null);
         importButton.setFocusPainted(false);
         importButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,11 +110,17 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        textSearch.setText("myTextField1");
+        textSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textSearch.setPrefixIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Search.png"))); // NOI18N
+        textSearch.setSelectionColor(new java.awt.Color(255, 255, 255));
         textSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 textSearchMouseClicked(evt);
+            }
+        });
+        textSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textSearchActionPerformed(evt);
             }
         });
         textSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -78,16 +139,16 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 1153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1131, Short.MAX_VALUE))
+                        .addGap(599, 599, 599)
+                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(599, 599, 599))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(174, 174, 174)
+                .addGap(41, 41, 41)
                 .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 769, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 930, Short.MAX_VALUE)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -101,12 +162,16 @@ public class MainMenu extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         file = chooser.getSelectedFile();
-        System.out.println(file.getName());
+        if(file!=null){
+            System.out.println(file.getName());
+        }
     }//GEN-LAST:event_importButtonActionPerformed
 
     private void textSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textSearchMouseClicked
         // TODO add your handling code here:
-        menu.show(textSearch, 0, textSearch.getHeight());
+        if(search.getItemSize()>0){
+            menu.show(textSearch, 0, textSearch.getHeight());
+        }
     }//GEN-LAST:event_textSearchMouseClicked
 
     private void textSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textSearchKeyReleased
@@ -115,25 +180,62 @@ public class MainMenu extends javax.swing.JFrame {
         search.setData(search(text));
         if(search.getItemSize()>0){
             menu.show(textSearch, 0, textSearch.getHeight());
+            menu.setPopupSize(menu.getWidth(), (search.getItemSize()*35));
+        }else{
+            menu.setVisible(false);
         }
     }//GEN-LAST:event_textSearchKeyReleased
+
+    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textSearchActionPerformed
     
     private ArrayList<DataSearch> search(String search){
         int dataLimit = 7;
         ArrayList<DataSearch> list = new ArrayList<>();
-        String dataTesting[] = {"Aaron", "Angie","Aviare","Ricky","Ricky's Mom"};
-        for(String d: dataTesting){
+        for(String d: dataList){
             if(d.toLowerCase().contains(search)){
-                list.add(new DataSearch(d, false));
+                boolean story = isStory(d);
+                if(story){
+                    list.add(0, new DataSearch(d, story));
+                }else{
+                    list.add(new DataSearch(d, story));
                 if(list.size()== dataLimit){
                     break;
                 }
             }
         }
-        return list;
+        
     }
+    return list;
+    }
+    
+
+    private void removeHistory(String text){
+        for(int i=0; i<history.size();i++){
+            String d=history.get(i);
+            if(d.toLowerCase().equals(text.toLowerCase())){
+                    history.set(i, "");
+                }
+            }
+    }
+    private boolean isStory(String text){
+        
+        for(String d: history){
+            if(d.toLowerCase().equals(text.toLowerCase())){
+                    return true;
+                }
+            }
+        return false;
+        }
+   
+    
     public static File getFile(){
         return file;
+    }
+    public void close(){
+        WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
     /**
      * @param args the command line arguments

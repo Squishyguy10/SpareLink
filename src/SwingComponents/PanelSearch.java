@@ -4,6 +4,8 @@
  */
 package SwingComponents;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import net.miginfocom.swing.MigLayout;
 
@@ -12,19 +14,35 @@ import net.miginfocom.swing.MigLayout;
  * @author aviare
  */
 public class PanelSearch extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PanelSearch
-     */
+    
+    private EventClick event;
+    public void addEventClick(EventClick event){
+        this.event = event;
+    }
     public PanelSearch() {
         initComponents();
         setLayout(new MigLayout("fillx","0[]0","0[]0"));
+        
     }
     
     public void setData(ArrayList<DataSearch> data){
         this.removeAll();
         for(DataSearch d : data){
             SearchItem item = new SearchItem(d);
+            item.addEvent(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    //  when click
+                    event.itemClick(d);
+                }
+            }, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    //  when remove
+                    event.itemRemove(item, d);
+
+                }
+            });
             this.add(item, "wrap");
         }
         repaint();

@@ -45,11 +45,11 @@ public class MyTextField extends JTextField {
         paintIcon(g);
         //  paint border
         if (isFocusOwner()) {
-            g.setColor(new Color(6, 135, 196));
+            g.setColor(Color.black);
             g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             g.drawRect(1, 1, getWidth() - 3, getHeight() - 3);
         } else {
-            g.setColor(new Color(76, 181, 195));
+            g.setColor(Color.black);
             g.drawRect(0, 0, getWidth() - 1, getHeight() - 1);
             g.drawRect(1, 1, getWidth() - 3, getHeight() - 3);
         }
@@ -60,7 +60,7 @@ public class MyTextField extends JTextField {
         if (prefixIcon != null) {
             Image prefix = ((ImageIcon) prefixIcon).getImage();
             int y = (getHeight() - prefixIcon.getIconHeight()) / 2;
-            g2.drawImage(prefix, 3, y, this);
+            g2.drawImage(prefix, 8, y, this);
         }
         if (suffixIcon != null) {
             Image suffix = ((ImageIcon) suffixIcon).getImage();
@@ -75,11 +75,11 @@ public class MyTextField extends JTextField {
         //  5 is default
         if (prefixIcon != null) {
             //  prefix is left
-            left = prefixIcon.getIconWidth() + 5;
+            left = prefixIcon.getIconWidth() + 15;
         }
         if (suffixIcon != null) {
             //  suffix is right
-            right = suffixIcon.getIconWidth() + 5;
+            right = suffixIcon.getIconWidth() + 15;
         }
         setBorder(javax.swing.BorderFactory.createEmptyBorder(7, left, 7, right));
     }

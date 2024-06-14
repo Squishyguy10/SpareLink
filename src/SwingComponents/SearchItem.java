@@ -5,7 +5,11 @@
 package SwingComponents;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -18,19 +22,45 @@ public class SearchItem extends javax.swing.JPanel {
      */
     public SearchItem(DataSearch data) {
         initComponents();
+        
         setData(data);
+        
     }
     
     private void setData(DataSearch data){
+        addEventMouse(this);
+        addEventMouse(text);
+        addEventMouse(remove);
         text.setText(data.getText());
         if(data.isStory()){
             text.setForeground(new Color(29, 106, 205));
             icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Recent_Search.png")));
+            remove.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }else{
             remove.setText("");
-            remove.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            
         }
     }
+    
+    private void addEventMouse(Component com){
+        com.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent me){
+                   setBackground(new Color(194,195,196));
+            }
+            @Override
+            public void mouseExited(MouseEvent me){
+                  setBackground(Color.WHITE);
+            }
+                });
+        
+    }
+        private ActionListener eventClick;
+        private ActionListener eventRemove;
+        public void addEvent(ActionListener eventClick, ActionListener eventRemove){
+            this.eventClick = eventClick;
+            this.eventRemove = eventRemove;
+        }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,12 +79,23 @@ public class SearchItem extends javax.swing.JPanel {
         icon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Search_Small.png"))); // NOI18N
 
-        text.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        text.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         text.setForeground(new java.awt.Color(102, 102, 102));
         text.setText("Text...");
+        text.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textMouseClicked(evt);
+            }
+        });
 
+        remove.setForeground(new java.awt.Color(102, 102, 102));
         remove.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         remove.setText("Remove");
+        remove.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -62,21 +103,36 @@ public class SearchItem extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(icon, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(text, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(remove, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(icon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(text, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(remove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(remove, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addComponent(text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void removeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMouseClicked
+        // TODO add your handling code here:
+        if(!remove.getText().trim().equals("")){
+            eventRemove.actionPerformed(null);
+        }
+    }//GEN-LAST:event_removeMouseClicked
+
+    private void textMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textMouseClicked
+        // TODO add your handling code here:
+        eventClick.actionPerformed(null);
+        
+    }//GEN-LAST:event_textMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
