@@ -9,7 +9,6 @@ import SwingComponents.EventClick;
 import SwingComponents.PanelSearch;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -64,10 +63,14 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void itemClick(DataSearch data) {
                 // When item clicked
+                
                 menu.setVisible(false);
                 textSearch.setText(data.getText());
                 history.add(data.getText());
                 System.out.println("Click Item : " + data.getText());
+                SchedulePage schedule = new SchedulePage(data.getText());
+                close();
+                schedule.setVisible(true);
             }
 
             @Override
@@ -148,9 +151,9 @@ public class MainMenu extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(40, 40, 40)
                 .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 930, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 931, Short.MAX_VALUE)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
