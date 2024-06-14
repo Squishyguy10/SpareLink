@@ -68,11 +68,13 @@ public class MainMenu extends javax.swing.JFrame {
                 textSearch.setText(data.getText());
                 history.add(data.getText());
                 System.out.println("Click Item : " + data.getText());
-                
             }
 
             @Override
             public void itemRemove(Component com, DataSearch data) {
+                if(textSearch.getText().equals(data.getText())){
+                    textSearch.setText("");
+                }
                 search.remove(com);
                 removeHistory(data.getText());
                 menu.setPopupSize(menu.getWidth(), (search.getItemSize() * 35));
