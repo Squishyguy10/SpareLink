@@ -9,6 +9,7 @@ import SwingComponents.EventClick;
 import SwingComponents.PanelSearch;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -33,6 +34,11 @@ public class MainMenu extends javax.swing.JFrame {
     
     public MainMenu() {
         initComponents();
+        
+        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/Link_Logo.png"));
+        setIconImage(image);
+        this.setTitle("SpareLink");
+        
         dataList.add("Michael Johnson");
         dataList.add("Sarah Smith");
         dataList.add("Christopher Brown");
@@ -101,6 +107,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         importButton = new javax.swing.JButton();
         textSearch = new SwingComponents.MyTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -134,6 +141,8 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Logo.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,21 +153,26 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(599, 599, 599)
-                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(599, 599, 599))
+                        .addGap(621, 621, 621)
+                        .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(444, 444, 444)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(832, 832, 832))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 931, Short.MAX_VALUE)
+                .addGap(310, 310, 310)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1936, 1088));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,6 +293,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton importButton;
+    private javax.swing.JLabel jLabel1;
     private SwingComponents.MyTextField textSearch;
     // End of variables declaration//GEN-END:variables
 }
