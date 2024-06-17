@@ -34,9 +34,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public MainMenu() {
         initComponents();
-        
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/Link_Logo.png"));
-        setIconImage(image);
+
         this.setTitle("SpareLink");
         
         dataList.add("Michael Johnson");
