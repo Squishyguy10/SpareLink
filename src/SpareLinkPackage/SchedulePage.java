@@ -62,7 +62,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     public void setCourses(ArrayList<JPanel> block){
         for(JPanel panel : block){  
             for (Component component : panel.getComponents()) {
-                if(component instanceof JLabel label) {
+                if(component instanceof JLabel) {
+                    JLabel label = (JLabel) component;
                     label.setText("test");
                 }
             }
