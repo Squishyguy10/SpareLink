@@ -11,14 +11,19 @@ import java.awt.event.WindowEvent;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 /**
  *
  * @author aviare
  */
 public class SchedulePage extends javax.swing.JFrame implements Runnable {
-    
+    ArrayList<JPanel> blockA = new ArrayList();
+    ArrayList<JPanel> blockB = new ArrayList();
+    ArrayList<JPanel> blockC = new ArrayList();
+    ArrayList<JPanel> blockD = new ArrayList();
     /**
      * Creates new form SchedulePage
      * @param name
@@ -26,16 +31,22 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     public SchedulePage(String name) {
         initComponents();
         
-        Image image = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resources/Link_Logo.png"));
-        setIconImage(image);
         this.setTitle("SpareLink - "+name);
         
         titleText.setText(name);
         Thread t = new Thread(this);
         t.start();
-        writeDayNum();
         
-        setCourses();
+        blockA.add(blockAPanel);
+        blockA.add(blockAPanel1);
+        blockB.add(blockBPanel);
+        blockB.add(blockBPanel1);
+        blockC.add(blockCPanel);
+        blockC.add(blockCPanel1);
+        blockD.add(blockDPanel);
+        blockD.add(blockDPanel1);
+        writeDayNum();
+        setCourses(blockA);
         
     }
     public void writeDayNum(){
@@ -48,10 +59,12 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         }
     }
     
-    public void setCourses(){
-        for (Component component : blockAPanel.getComponents()) {
-            if(component instanceof JLabel label) {
-                label.setText("text");
+    public void setCourses(ArrayList<JPanel> block){
+        for(JPanel panel : block){  
+            for (Component component : panel.getComponents()) {
+                if(component instanceof JLabel label) {
+                    label.setText("test");
+                }
             }
         }
     }
