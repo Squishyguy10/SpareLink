@@ -183,7 +183,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher9)
                     .addComponent(classCode9)
                     .addComponent(className9))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockAPanelLayout.setVerticalGroup(
             blockAPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +196,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum9)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockBPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -226,7 +226,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher1)
                     .addComponent(classCode1)
                     .addComponent(className1))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockBPanelLayout.setVerticalGroup(
             blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +239,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockCPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -269,7 +269,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher2)
                     .addComponent(classCode2)
                     .addComponent(className2))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockCPanelLayout.setVerticalGroup(
             blockCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,7 +282,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockDPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -312,7 +312,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher3)
                     .addComponent(classCode3)
                     .addComponent(className3))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockDPanelLayout.setVerticalGroup(
             blockDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +325,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockBPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -355,7 +355,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher4)
                     .addComponent(classCode4)
                     .addComponent(className4))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockBPanel1Layout.setVerticalGroup(
             blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +368,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockAPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -398,7 +398,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher5)
                     .addComponent(classCode5)
                     .addComponent(className5))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockAPanel1Layout.setVerticalGroup(
             blockAPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,7 +411,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockDPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -441,7 +441,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher6)
                     .addComponent(classCode6)
                     .addComponent(className6))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockDPanel1Layout.setVerticalGroup(
             blockDPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,7 +454,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         blockCPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -484,7 +484,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                     .addComponent(classTeacher7)
                     .addComponent(classCode7)
                     .addComponent(className7))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         blockCPanel1Layout.setVerticalGroup(
             blockCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +497,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
@@ -543,7 +543,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(blockAPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,11 +556,11 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(843, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(titleText)
-                        .addGap(697, 697, 697)
+                        .addGap(657, 657, 657)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(timeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(dayText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -572,7 +572,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(578, 578, 578)
                     .addComponent(jLabel7)
-                    .addContainerGap(1275, Short.MAX_VALUE)))
+                    .addContainerGap(1287, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,7 +595,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                         .addComponent(blockDPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
@@ -631,10 +631,10 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(205, 205, 205)
                     .addComponent(jLabel7)
-                    .addContainerGap(842, Short.MAX_VALUE)))
+                    .addContainerGap(825, Short.MAX_VALUE)))
         );
 
-        setSize(new java.awt.Dimension(1920, 1080));
+        pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
