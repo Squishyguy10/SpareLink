@@ -13,6 +13,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 /**
@@ -30,7 +31,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
      */
     public SchedulePage(String name) {
         initComponents();
-        
         this.setTitle("SpareLink - "+name);
         
         titleText.setText(name);
@@ -88,11 +88,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         classCode9 = new javax.swing.JLabel();
         classTeacher9 = new javax.swing.JLabel();
         classRoomNum9 = new javax.swing.JLabel();
-        blockBPanel = new javax.swing.JPanel();
-        className1 = new javax.swing.JLabel();
-        classCode1 = new javax.swing.JLabel();
-        classTeacher1 = new javax.swing.JLabel();
-        classRoomNum1 = new javax.swing.JLabel();
         blockCPanel = new javax.swing.JPanel();
         className2 = new javax.swing.JLabel();
         classCode2 = new javax.swing.JLabel();
@@ -103,11 +98,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         classCode3 = new javax.swing.JLabel();
         classTeacher3 = new javax.swing.JLabel();
         classRoomNum3 = new javax.swing.JLabel();
-        blockBPanel1 = new javax.swing.JPanel();
-        className4 = new javax.swing.JLabel();
-        classCode4 = new javax.swing.JLabel();
-        classTeacher4 = new javax.swing.JLabel();
-        classRoomNum4 = new javax.swing.JLabel();
         blockAPanel1 = new javax.swing.JPanel();
         className5 = new javax.swing.JLabel();
         classCode5 = new javax.swing.JLabel();
@@ -123,13 +113,24 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         classCode7 = new javax.swing.JLabel();
         classTeacher7 = new javax.swing.JLabel();
         classRoomNum7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        blockBPanel1 = new javax.swing.JPanel();
+        className8 = new javax.swing.JLabel();
+        classCode8 = new javax.swing.JLabel();
+        classTeacher8 = new javax.swing.JLabel();
+        classRoomNum8 = new javax.swing.JLabel();
+        blockBPanel = new javax.swing.JPanel();
+        className1 = new javax.swing.JLabel();
+        classCode1 = new javax.swing.JLabel();
+        classTeacher1 = new javax.swing.JLabel();
+        classRoomNum1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        timeText1 = new javax.swing.JLabel();
+        timeText2 = new javax.swing.JLabel();
+        timeText3 = new javax.swing.JLabel();
+        timeText4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -199,49 +200,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        blockBPanel.setBackground(new java.awt.Color(255, 255, 255));
-        blockBPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        blockBPanel.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className1.setText("Class Name");
-
-        classCode1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classCode1.setText("Class Code");
-
-        classTeacher1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classTeacher1.setText("Class Teacher");
-
-        classRoomNum1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classRoomNum1.setText("Class Room #");
-
-        javax.swing.GroupLayout blockBPanelLayout = new javax.swing.GroupLayout(blockBPanel);
-        blockBPanel.setLayout(blockBPanelLayout);
-        blockBPanelLayout.setHorizontalGroup(
-            blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockBPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classRoomNum1)
-                    .addComponent(classTeacher1)
-                    .addComponent(classCode1)
-                    .addComponent(className1))
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
-        blockBPanelLayout.setVerticalGroup(
-            blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockBPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classCode1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classTeacher1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classRoomNum1)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
         blockCPanel.setBackground(new java.awt.Color(255, 255, 255));
         blockCPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockCPanel.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -267,8 +225,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(blockCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum2)
                     .addComponent(classTeacher2)
-                    .addComponent(classCode2)
-                    .addComponent(className2))
+                    .addComponent(className2)
+                    .addComponent(classCode2))
                 .addContainerGap(163, Short.MAX_VALUE))
         );
         blockCPanelLayout.setVerticalGroup(
@@ -276,13 +234,13 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
             .addGroup(blockCPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(className2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(13, 13, 13)
                 .addComponent(classCode2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classTeacher2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classRoomNum2)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(classTeacher2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(classRoomNum2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         blockDPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -325,49 +283,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addComponent(classTeacher3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum3)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        blockBPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        blockBPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        blockBPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className4.setText("Class Name");
-
-        classCode4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classCode4.setText("Class Code");
-
-        classTeacher4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classTeacher4.setText("Class Teacher");
-
-        classRoomNum4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        classRoomNum4.setText("Class Room #");
-
-        javax.swing.GroupLayout blockBPanel1Layout = new javax.swing.GroupLayout(blockBPanel1);
-        blockBPanel1.setLayout(blockBPanel1Layout);
-        blockBPanel1Layout.setHorizontalGroup(
-            blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockBPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(classRoomNum4)
-                    .addComponent(classTeacher4)
-                    .addComponent(classCode4)
-                    .addComponent(className4))
-                .addContainerGap(163, Short.MAX_VALUE))
-        );
-        blockBPanel1Layout.setVerticalGroup(
-            blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockBPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classCode4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classTeacher4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(classRoomNum4)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -500,141 +415,228 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("10:15 - 11:35");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setText("8:55 - 10:10");
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel3.setText("12:20 - 1:35");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("1:40 - 2:55");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Logo_Small.png"))); // NOI18N
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setText("Day 2 ");
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel7.setText("Day 1 ");
+
+        blockBPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        blockBPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        blockBPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
+
+        className8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        className8.setText("Class Name");
+
+        classCode8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classCode8.setText("Class Code");
+
+        classTeacher8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classTeacher8.setText("Class Teacher");
+
+        classRoomNum8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classRoomNum8.setText("Class Room #");
+
+        javax.swing.GroupLayout blockBPanel1Layout = new javax.swing.GroupLayout(blockBPanel1);
+        blockBPanel1.setLayout(blockBPanel1Layout);
+        blockBPanel1Layout.setHorizontalGroup(
+            blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blockBPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(classRoomNum8)
+                    .addComponent(classTeacher8)
+                    .addComponent(classCode8)
+                    .addComponent(className8))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        blockBPanel1Layout.setVerticalGroup(
+            blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blockBPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(className8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classCode8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classTeacher8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classRoomNum8)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        blockBPanel.setBackground(new java.awt.Color(255, 255, 255));
+        blockBPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+        blockBPanel.setPreferredSize(new java.awt.Dimension(300, 150));
+
+        className1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        className1.setText("Class Name");
+
+        classCode1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classCode1.setText("Class Code");
+
+        classTeacher1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classTeacher1.setText("Class Teacher");
+
+        classRoomNum1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        classRoomNum1.setText("Class Room #");
+
+        javax.swing.GroupLayout blockBPanelLayout = new javax.swing.GroupLayout(blockBPanel);
+        blockBPanel.setLayout(blockBPanelLayout);
+        blockBPanelLayout.setHorizontalGroup(
+            blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blockBPanelLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(classRoomNum1)
+                    .addComponent(classTeacher1)
+                    .addComponent(classCode1)
+                    .addComponent(className1))
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        blockBPanelLayout.setVerticalGroup(
+            blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(blockBPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(className1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classCode1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classTeacher1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(classRoomNum1)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setText("Day 2 ");
+
+        timeText1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        timeText1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeText1.setText("8:55-10:10");
+
+        timeText2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        timeText2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeText2.setText("10:15-11:30");
+
+        timeText3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        timeText3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeText3.setText("12:20-1:35");
+
+        timeText4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        timeText4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        timeText4.setText("1:40-2:55");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Logo_Small.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(451, 451, 451)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(144, 144, 144)
+                .addComponent(titleText)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(148, 148, 148)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGap(137, 137, 137)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(timeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dayText, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(timeText1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeText2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeText3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(timeText4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(blockAPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blockBPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(blockDPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(434, 434, 434))
+                    .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(blockBPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49))
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(22, 22, 22)
                 .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(843, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(titleText)
-                        .addGap(657, 657, 657)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(timeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(dayText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(559, 559, 559))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(578, 578, 578)
-                    .addComponent(jLabel7)
-                    .addContainerGap(1287, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(timeText)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(titleText))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(timeText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dayText)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(titleText)
-                    .addComponent(dayText))
-                .addGap(104, 104, 104)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(blockBPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockAPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockDPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(blockBPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(60, 60, 60)
-                                .addComponent(jLabel2)))
+                                .addGap(64, 64, 64)
+                                .addComponent(timeText1)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(blockAPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(jLabel1)))
+                                .addGap(71, 71, 71)
+                                .addComponent(timeText2)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
+                            .addComponent(blockDPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(72, 72, 72)))
+                                .addComponent(timeText3)
+                                .addGap(63, 63, 63)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addContainerGap())))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(205, 205, 205)
-                    .addComponent(jLabel7)
-                    .addContainerGap(825, Short.MAX_VALUE)))
+                                .addGap(74, 74, 74)
+                                .addComponent(timeText4))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))))
         );
 
-        pack();
+        setSize(new java.awt.Dimension(1000, 849));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -695,45 +697,46 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel classCode1;
     private javax.swing.JLabel classCode2;
     private javax.swing.JLabel classCode3;
-    private javax.swing.JLabel classCode4;
     private javax.swing.JLabel classCode5;
     private javax.swing.JLabel classCode6;
     private javax.swing.JLabel classCode7;
+    private javax.swing.JLabel classCode8;
     private javax.swing.JLabel classCode9;
     private javax.swing.JLabel className1;
     private javax.swing.JLabel className2;
     private javax.swing.JLabel className3;
-    private javax.swing.JLabel className4;
     private javax.swing.JLabel className5;
     private javax.swing.JLabel className6;
     private javax.swing.JLabel className7;
+    private javax.swing.JLabel className8;
     private javax.swing.JLabel className9;
     private javax.swing.JLabel classRoomNum1;
     private javax.swing.JLabel classRoomNum2;
     private javax.swing.JLabel classRoomNum3;
-    private javax.swing.JLabel classRoomNum4;
     private javax.swing.JLabel classRoomNum5;
     private javax.swing.JLabel classRoomNum6;
     private javax.swing.JLabel classRoomNum7;
+    private javax.swing.JLabel classRoomNum8;
     private javax.swing.JLabel classRoomNum9;
     private javax.swing.JLabel classTeacher1;
     private javax.swing.JLabel classTeacher2;
     private javax.swing.JLabel classTeacher3;
-    private javax.swing.JLabel classTeacher4;
     private javax.swing.JLabel classTeacher5;
     private javax.swing.JLabel classTeacher6;
     private javax.swing.JLabel classTeacher7;
+    private javax.swing.JLabel classTeacher8;
     private javax.swing.JLabel classTeacher9;
     private javax.swing.JLabel dayText;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton returnButton;
     private javax.swing.JLabel timeText;
+    private javax.swing.JLabel timeText1;
+    private javax.swing.JLabel timeText2;
+    private javax.swing.JLabel timeText3;
+    private javax.swing.JLabel timeText4;
     private javax.swing.JLabel titleText;
     // End of variables declaration//GEN-END:variables
 
