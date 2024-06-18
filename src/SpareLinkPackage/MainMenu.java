@@ -9,10 +9,12 @@ import SwingComponents.EventClick;
 import SwingComponents.PanelSearch;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -34,6 +36,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public MainMenu() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         this.setTitle("SpareLink");
         
@@ -151,21 +154,21 @@ public class MainMenu extends javax.swing.JFrame {
                         .addGap(24, 24, 24)
                         .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(621, 621, 621)
+                        .addGap(375, 375, 375)
                         .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(444, 444, 444)
+                        .addGap(210, 210, 210)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 971, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(832, 832, 832))
+                .addGap(1066, 1066, 1066))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(41, 41, 41)
                 .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(310, 310, 310)
+                .addGap(261, 261, 261)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 330, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
                 .addComponent(importButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
@@ -179,11 +182,33 @@ public class MainMenu extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         file = chooser.getSelectedFile();
-        if(file!=null){
-            System.out.println(file.getName());
+        if (file != null) {
+            System.out.println("Selected file: " + file.getName());
+
+            // Save the selected file to the user's home directory
+            String storageLocation = System.getProperty("user.home");
+            String outputFilePath = storageLocation + File.separator + file.getName();
+
+            try {
+                saveFile(outputFilePath, file);
+                System.out.println("File saved successfully to: " + outputFilePath);
+            } catch (IOException e) {
+                System.err.println("Error saving the file: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
     }//GEN-LAST:event_importButtonActionPerformed
-
+private static void saveFile(String outputFilePath, File inputFile) throws IOException {
+        FileInputStream fis = new FileInputStream(inputFile);
+        FileOutputStream fos = new FileOutputStream(outputFilePath);
+        byte[] buffer = new byte[1024];
+        int bytesRead;
+        while ((bytesRead = fis.read(buffer)) != -1) {
+            fos.write(buffer, 0, bytesRead);
+        }
+        fis.close();
+        fos.close();
+    }
     private void textSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textSearchMouseClicked
         // TODO add your handling code here:
         if(search.getItemSize()>0){
