@@ -14,13 +14,15 @@ public class Student {
         gender = gen;
         studentNumber = sn;
         grade = gr;
+        courses.clear();
     }
     
     public Student() {
         name = "";
-        gender = "Aviare";
-        studentNumber = -1;
+        gender = "";
+        studentNumber = 0;
         grade = 0;
+        courses.clear();
     }
     
     public String getName() {
@@ -38,6 +40,18 @@ public class Student {
     public int getGrade() {
         return grade;
     }
+
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
+
+    public Course getCourse(int index) {
+        return courses.get(index);
+    }
+
+    public int getNumCourses() {
+        return courses.size();
+    }
     
     public void setName(String n) {
         name = n;
@@ -53,5 +67,17 @@ public class Student {
     
     public void setGrade(int gr) {
         grade = gr;
+    }
+
+    public void addCourse(Course c) {
+        courses.add(c);
+    }
+
+    public String toString() {
+        String temp = studentNumber + ", " + name + ", " + grade + ", " + gender + "\n";
+        for(Course c : courses) {
+            temp += c;
+        }
+        return temp;
     }
 }
