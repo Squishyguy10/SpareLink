@@ -11,6 +11,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 
 public class SpreadsheetReader {
+    public static void main(String[] args)  throws EncryptedDocumentException, IOException {
+        ArrayList<Student> students = getStudentList("sampleFile.xlsx");
+        for(Student s : students) {
+            System.out.println(s);
+        }
+    }
     public static ArrayList<Student> getStudentList(String filePath) throws EncryptedDocumentException, IOException {
         File file = new File(filePath);
 
@@ -26,6 +32,8 @@ public class SpreadsheetReader {
             Map<Integer, Student> studentMap = new HashMap<>();
         
             boolean firstLine = true;
+            boolean isCoop = false;
+            boolean isCareers = false;
             for(Row row : sheet) {
                 if(firstLine) {
                     firstLine = false;
@@ -38,7 +46,8 @@ public class SpreadsheetReader {
                 
                 if(studentMap.containsKey(currentStudentNum)) {
                     newStudent = studentMap.get(currentStudentNum);
-                } else {
+                }
+                else {
                     newStudent = new Student();
                     newStudent.setStudentNumber(currentStudentNum);
                     studentMap.put(currentStudentNum, newStudent);
@@ -66,40 +75,60 @@ public class SpreadsheetReader {
                             String tempSched = cell.getStringCellValue();
                             if(tempSched.length() == 15) {
                                 newCourse.setBlock((int)(tempSched.charAt(5)-'A'+1));
-                            } else {
+                            }
+                            else {
                                 newCourse.setBlock((int)(tempSched.charAt(10)-'A'+1)); // coop
+                                isCoop = true;
                             }
                             break;
                         case 8:
-                            newCourse.setName(cell.getStringCellValue());
+                            String tempName = cell.getStringCellValue();
+                            newCourse.setName(tempName);
+                            if(tempName.contains("GLC2O")) {
+                                isCareers = true;
+                            }
                             break;
                         case 9:
                             newCourse.setTeacher(cell.getStringCellValue());
                             break;
-                        case 11:
-                            newCourse.setRoom(cell.getStringCellValue());
+                        case 10:
+                            try { // rooms can have letters or just be numbers so this try-catch is necessary
+                                newCourse.setRoom(cell.getStringCellValue());
+                            }
+                            catch(IllegalStateException e) {
+                                newCourse.setRoom(String.valueOf((int) cell.getNumericCellValue()));
+                            }
                             break;
                     }
                     cellNum++;
                 }
-                newStudent.addCourse(newCourse);
+                if(!isCareers) {
+                    newStudent.addCourse(newCourse);
+                }
+                if(isCoop) {
+                    newStudent.addCourse(newCourse);
+                    newStudent.addCourse(new Course(newCourse.getSemester(), newCourse.getTerm(), newCourse.getBlock()+1, newCourse.getName(), newCourse.getTeacher(), newCourse.getRoom()));
+                }
+                isCareers = false;
+                isCoop = false;
+                newStudent.sortCourses();
             }
             studentList.addAll(studentMap.values());
         }
         finally {
-            if (wb != null) {
+            if(wb != null) {
                 try {
                     wb.close();
                 }
-                catch (IOException e) {
+                catch(IOException e) {
                     e.printStackTrace();
                 }
             }
-            if (fis != null) {
+            if(fis != null) {
                 try {
                     fis.close();
                 }
-                catch (IOException e) {
+                catch(IOException e) {
                     e.printStackTrace();
                 }
             }

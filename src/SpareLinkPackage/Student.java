@@ -1,6 +1,8 @@
 package SpareLinkPackage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Student {
     private String name;
@@ -71,6 +73,20 @@ public class Student {
 
     public void addCourse(Course c) {
         courses.add(c);
+    }
+
+    public void sortCourses() {
+        Collections.sort(courses, new Comparator<Course>() {
+            @Override
+            public int compare(Course c1, Course c2) {
+                if(c1.getSemester() != c2.getSemester()) {
+                    return Integer.compare(c1.getSemester(), c2.getSemester());
+                }
+                else {
+                    return Integer.compare(c1.getBlock(), c2.getBlock());
+                }
+            }
+        });
     }
 
     public String toString() {
