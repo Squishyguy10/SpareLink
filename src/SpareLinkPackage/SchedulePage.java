@@ -5,26 +5,29 @@
 package SpareLinkPackage;
 
 import java.awt.Component;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import org.apache.poi.EncryptedDocumentException;
 /**
  *
  * @author aviare
  */
 public class SchedulePage extends javax.swing.JFrame implements Runnable {
-    ArrayList<JPanel> blockA = new ArrayList();
-    ArrayList<JPanel> blockB = new ArrayList();
-    ArrayList<JPanel> blockC = new ArrayList();
-    ArrayList<JPanel> blockD = new ArrayList();
+    Student studentData;
+    ArrayList<JPanel> blockA = new ArrayList<JPanel>();
+    ArrayList<JPanel> blockB = new ArrayList<JPanel>();
+    ArrayList<JPanel> blockC = new ArrayList<JPanel>();
+    ArrayList<JPanel> blockD = new ArrayList<JPanel>();
+
     /**
      * Creates new form SchedulePage
      * @param name
@@ -32,6 +35,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     public SchedulePage(String name) {
         initComponents();
         this.setTitle("SpareLink - "+name);
+        studentData = MainMenu.getData(name);
+        System.out.println(studentData);
         
         titleText.setText(name);
         Thread t = new Thread(this);
@@ -45,8 +50,12 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockC.add(blockCPanel1);
         blockD.add(blockDPanel);
         blockD.add(blockDPanel1);
+
         writeDayNum();
-        setCourses(blockA);
+        setCourses(blockA, 0);
+        setCourses(blockB, 1);
+        setCourses(blockC, 2);
+        setCourses(blockD, 3);
         
     }
     public void writeDayNum(){
@@ -59,16 +68,25 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         }
     }
     
-    public void setCourses(ArrayList<JPanel> block){
+    public void setCourses(ArrayList<JPanel> block, int index){
         for(JPanel panel : block){  
-            for (Component component : panel.getComponents()) {
-                if(component instanceof JLabel) {
-                    JLabel label = (JLabel) component;
-                    label.setText("test");
+            for(int i=0;i<panel.getComponents().length;i++){
+                    JLabel label = (JLabel) panel.getComponent(i);
+                    switch (i) {
+                        case 2:
+                            label.setText(studentData.getCourse(index).getName());
+                            break;
+                        case 1:
+                            label.setText(studentData.getCourse(index).getTeacher());
+                            break;
+                        case 0:
+                            label.setText(studentData.getCourse(index).getRoom());
+                            break;
+                    }
                 }
             }
         }
-    }
+      
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -84,43 +102,35 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         timeText = new javax.swing.JLabel();
         dayText = new javax.swing.JLabel();
         blockAPanel = new javax.swing.JPanel();
-        className9 = new javax.swing.JLabel();
         classCode9 = new javax.swing.JLabel();
         classTeacher9 = new javax.swing.JLabel();
         classRoomNum9 = new javax.swing.JLabel();
         blockCPanel = new javax.swing.JPanel();
-        className2 = new javax.swing.JLabel();
         classCode2 = new javax.swing.JLabel();
         classTeacher2 = new javax.swing.JLabel();
         classRoomNum2 = new javax.swing.JLabel();
         blockDPanel = new javax.swing.JPanel();
-        className3 = new javax.swing.JLabel();
         classCode3 = new javax.swing.JLabel();
         classTeacher3 = new javax.swing.JLabel();
         classRoomNum3 = new javax.swing.JLabel();
         blockAPanel1 = new javax.swing.JPanel();
-        className5 = new javax.swing.JLabel();
         classCode5 = new javax.swing.JLabel();
         classTeacher5 = new javax.swing.JLabel();
         classRoomNum5 = new javax.swing.JLabel();
         blockDPanel1 = new javax.swing.JPanel();
-        className6 = new javax.swing.JLabel();
         classCode6 = new javax.swing.JLabel();
         classTeacher6 = new javax.swing.JLabel();
         classRoomNum6 = new javax.swing.JLabel();
         blockCPanel1 = new javax.swing.JPanel();
-        className7 = new javax.swing.JLabel();
         classCode7 = new javax.swing.JLabel();
         classTeacher7 = new javax.swing.JLabel();
         classRoomNum7 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         blockBPanel1 = new javax.swing.JPanel();
-        className8 = new javax.swing.JLabel();
         classCode8 = new javax.swing.JLabel();
         classTeacher8 = new javax.swing.JLabel();
         classRoomNum8 = new javax.swing.JLabel();
         blockBPanel = new javax.swing.JPanel();
-        className1 = new javax.swing.JLabel();
         classCode1 = new javax.swing.JLabel();
         classTeacher1 = new javax.swing.JLabel();
         classRoomNum1 = new javax.swing.JLabel();
@@ -130,7 +140,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         timeText3 = new javax.swing.JLabel();
         timeText4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -141,7 +150,12 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         returnButton.setFocusPainted(false);
         returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnButtonActionPerformed(evt);
+                try {
+                    returnButtonActionPerformed(evt);
+                } catch (EncryptedDocumentException | IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -161,9 +175,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockAPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockAPanel.setPreferredSize(new java.awt.Dimension(300, 150));
 
-        className9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className9.setText("Class Name");
-
         classCode9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode9.setText("Class Code");
 
@@ -182,30 +193,24 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(blockAPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum9)
                     .addComponent(classTeacher9)
-                    .addComponent(classCode9)
-                    .addComponent(className9))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode9))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         blockAPanelLayout.setVerticalGroup(
             blockAPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockAPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(classCode9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum9)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         blockCPanel.setBackground(new java.awt.Color(255, 255, 255));
         blockCPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockCPanel.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className2.setText("Class Name");
 
         classCode2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode2.setText("Class Code");
@@ -221,34 +226,28 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockCPanelLayout.setHorizontalGroup(
             blockCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockCPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addGroup(blockCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum2)
                     .addComponent(classTeacher2)
-                    .addComponent(className2)
                     .addComponent(classCode2))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         blockCPanelLayout.setVerticalGroup(
             blockCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockCPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className2)
-                .addGap(13, 13, 13)
+                .addGap(23, 23, 23)
                 .addComponent(classCode2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(classTeacher2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(classRoomNum2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         blockDPanel.setBackground(new java.awt.Color(255, 255, 255));
         blockDPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockDPanel.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className3.setText("Class Name");
 
         classCode3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode3.setText("Class Code");
@@ -264,34 +263,28 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockDPanelLayout.setHorizontalGroup(
             blockDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockDPanelLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addGroup(blockDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum3)
                     .addComponent(classTeacher3)
-                    .addComponent(classCode3)
-                    .addComponent(className3))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode3))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         blockDPanelLayout.setVerticalGroup(
             blockDPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockDPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(classCode3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum3)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         blockAPanel1.setBackground(new java.awt.Color(255, 255, 255));
         blockAPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockAPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className5.setText("Class Name");
 
         classCode5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode5.setText("Class Code");
@@ -311,30 +304,24 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(blockAPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum5)
                     .addComponent(classTeacher5)
-                    .addComponent(classCode5)
-                    .addComponent(className5))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode5))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         blockAPanel1Layout.setVerticalGroup(
             blockAPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockAPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blockAPanel1Layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(classCode5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum5)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         blockDPanel1.setBackground(new java.awt.Color(255, 255, 255));
         blockDPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockDPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className6.setText("Class Name");
 
         classCode6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode6.setText("Class Code");
@@ -354,30 +341,24 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(blockDPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum6)
                     .addComponent(classTeacher6)
-                    .addComponent(classCode6)
-                    .addComponent(className6))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode6))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         blockDPanel1Layout.setVerticalGroup(
             blockDPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(blockDPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, blockDPanel1Layout.createSequentialGroup()
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(classCode6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum6)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         blockCPanel1.setBackground(new java.awt.Color(255, 255, 255));
         blockCPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockCPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className7.setText("Class Name");
 
         classCode7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode7.setText("Class Code");
@@ -393,26 +374,23 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockCPanel1Layout.setHorizontalGroup(
             blockCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockCPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(17, 17, 17)
                 .addGroup(blockCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum7)
                     .addComponent(classTeacher7)
-                    .addComponent(classCode7)
-                    .addComponent(className7))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode7))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         blockCPanel1Layout.setVerticalGroup(
             blockCPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockCPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(24, 24, 24)
                 .addComponent(classCode7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum7)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -421,9 +399,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockBPanel1.setBackground(new java.awt.Color(255, 255, 255));
         blockBPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockBPanel1.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className8.setText("Class Name");
 
         classCode8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode8.setText("Class Code");
@@ -439,34 +414,28 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         blockBPanel1Layout.setHorizontalGroup(
             blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockBPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addGroup(blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum8)
                     .addComponent(classTeacher8)
-                    .addComponent(classCode8)
-                    .addComponent(className8))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode8))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
         blockBPanel1Layout.setVerticalGroup(
             blockBPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockBPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(22, 22, 22)
                 .addComponent(classCode8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum8)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         blockBPanel.setBackground(new java.awt.Color(255, 255, 255));
         blockBPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockBPanel.setPreferredSize(new java.awt.Dimension(300, 150));
-
-        className1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        className1.setText("Class Name");
 
         classCode1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classCode1.setText("Class Code");
@@ -486,22 +455,19 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addGroup(blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(classRoomNum1)
                     .addComponent(classTeacher1)
-                    .addComponent(classCode1)
-                    .addComponent(className1))
-                .addContainerGap(163, Short.MAX_VALUE))
+                    .addComponent(classCode1))
+                .addContainerGap(172, Short.MAX_VALUE))
         );
         blockBPanelLayout.setVerticalGroup(
             blockBPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(blockBPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(className1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(21, 21, 21)
                 .addComponent(classCode1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classTeacher1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(classRoomNum1)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -530,22 +496,17 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(161, 161, 161)
                 .addComponent(jLabel7)
                 .addGap(144, 144, 144)
-                .addComponent(titleText)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
+                .addComponent(titleText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(137, 137, 137)
+                .addComponent(jLabel8)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(timeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(dayText, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,22 +538,37 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(titleText))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(timeText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dayText)))
+                        .addComponent(dayText))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, Short.MAX_VALUE)
+                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(blockBPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -613,34 +589,19 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                                 .addComponent(timeText3)
                                 .addGap(63, 63, 63)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(74, 74, 74)
-                                .addComponent(timeText4))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(blockAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockBPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockCPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(blockDPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                                .addComponent(timeText4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(blockCPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
 
         setSize(new java.awt.Dimension(1000, 849));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) throws EncryptedDocumentException, IOException {//GEN-FIRST:event_returnButtonActionPerformed
         // TODO add your handling code here:
         close();
         MainMenu menu = new MainMenu();
@@ -702,14 +663,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel classCode7;
     private javax.swing.JLabel classCode8;
     private javax.swing.JLabel classCode9;
-    private javax.swing.JLabel className1;
-    private javax.swing.JLabel className2;
-    private javax.swing.JLabel className3;
-    private javax.swing.JLabel className5;
-    private javax.swing.JLabel className6;
-    private javax.swing.JLabel className7;
-    private javax.swing.JLabel className8;
-    private javax.swing.JLabel className9;
     private javax.swing.JLabel classRoomNum1;
     private javax.swing.JLabel classRoomNum2;
     private javax.swing.JLabel classRoomNum3;
@@ -727,7 +680,6 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel classTeacher8;
     private javax.swing.JLabel classTeacher9;
     private javax.swing.JLabel dayText;
-    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

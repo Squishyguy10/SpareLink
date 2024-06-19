@@ -2,15 +2,13 @@ package SpareLinkPackage;
 
 public class Course {
     private int semester;
-    private int term; // refers to before or after midterm (for courses like Civics and Careers). term = 0 is both terms.
     private int block; // default to Day1
     private String name;
     private String teacher;
     private String room;
     
-    public Course(int s, int t, int b, String n, String tr, String r) {
+    public Course(int s, int b, String n, String tr, String r) {
         semester = s;
-        term = t;
         block = b;
         name = n;
         teacher = tr;
@@ -19,7 +17,6 @@ public class Course {
     
     public Course() {
         semester = 0;
-        term = 0;
         block = 0;
         name = "";
         teacher = "";
@@ -30,9 +27,6 @@ public class Course {
         return semester;
     }
 
-    public int getTerm() {
-        return term;
-    }
     
     public int getBlock() {
         return block;
@@ -52,10 +46,6 @@ public class Course {
     
     public void setSemester(int s) {
         semester = s;
-    }
-
-    public void setTerm(int t) {
-        term = t;
     }
     
     public void setBlock(int b) {
