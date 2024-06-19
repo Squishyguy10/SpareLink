@@ -4,8 +4,6 @@
  */
 package SpareLinkPackage;
 
-import java.awt.Component;
-import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -13,10 +11,14 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import org.apache.poi.EncryptedDocumentException;
+
+import java.awt.*;
 /**
  *
  * @author aviare
@@ -56,6 +58,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         setCourses(blockB, 1);
         setCourses(blockC, 2);
         setCourses(blockD, 3);
+
+        spareCheck();
         
     }
     public void writeDayNum(){
@@ -86,7 +90,66 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 }
             }
         }
-      
+    
+    public void spareCheck(){
+        LocalDate currentDate = LocalDate.now();
+        int dayOfMonth = (currentDate.getDayOfMonth())%2;
+        Border redBorder = BorderFactory.createLineBorder(Color.RED, 3);
+        Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 3);
+        LocalTime currentTime = LocalTime.now();
+        int currentBlock = CheckTime.getBlock(LocalTime.of(10, 40),dayOfMonth);
+        int spareBlock = studentData.spareIndex();
+        
+        if(currentBlock==-1){
+        } else if(currentBlock != spareBlock){
+            switch(currentBlock){
+                case 0:
+                    for(JPanel panel : blockA){
+                        panel.setBorder(redBorder);
+                    }
+                    break;
+                case 1:
+                    for(JPanel panel : blockB){
+                        panel.setBorder(redBorder);
+                    }
+                    break;
+                case 2:
+                    for(JPanel panel : blockC){
+                        panel.setBorder(redBorder);
+                    }
+                    break;
+                case 3:
+                    for(JPanel panel : blockD){
+                        panel.setBorder(redBorder);
+                    }
+                    break;
+            }
+        } else if(currentBlock == spareBlock){
+            switch(currentBlock){
+                case 0:
+                    for(JPanel panel : blockA){
+                        panel.setBorder(greenBorder);
+                    }
+                    break;
+                case 1:
+                    for(JPanel panel : blockB){
+                        panel.setBorder(greenBorder);
+                    }
+                    break;
+                case 2:
+                    for(JPanel panel : blockC){
+                        panel.setBorder(greenBorder);
+                    }
+                    break;
+                case 3:
+                    for(JPanel panel : blockD){
+                        panel.setBorder(greenBorder);
+                    }
+                    break;
+            }
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

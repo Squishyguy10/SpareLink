@@ -89,6 +89,15 @@ public class Student {
         });
     }
 
+    public int spareIndex(){
+        for(int i=0;i<this.getCourses().size();i++){
+            if(this.getCourse(i).isSpare()){
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public String toString() {
         String temp = studentNumber + ", " + name + ", " + grade + ", " + gender + "\n";
         for(Course c : courses) {

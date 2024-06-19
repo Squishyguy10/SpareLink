@@ -37,7 +37,7 @@ public class MainMenu extends javax.swing.JFrame {
     
     public MainMenu() throws EncryptedDocumentException, IOException {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
 
         this.setTitle("SpareLink");
         

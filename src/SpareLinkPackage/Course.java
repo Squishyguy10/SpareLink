@@ -67,4 +67,8 @@ public class Course {
     public String toString() {
         return "- " + name + ", " + semester + ", " + block + ", " + teacher + ", " + room + "\n";
     }
+
+    public boolean isSpare(){
+        return name.contains("SPAR");
+    }
 }
