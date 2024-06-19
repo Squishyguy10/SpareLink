@@ -4,8 +4,6 @@
  */
 package SwingComponents;
 
-import SpareLinkPackage.Student;
-
 /**
  *
  * @author aviare

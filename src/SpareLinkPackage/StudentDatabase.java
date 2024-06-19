@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author aviare
  */
 public class StudentDatabase {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private ArrayList<Student> StudentList = new ArrayList();
     public StudentDatabase(){
         StudentList.clear();

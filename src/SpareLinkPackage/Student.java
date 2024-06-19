@@ -89,8 +89,12 @@ public class Student {
         });
     }
 
-    public int spareIndex(){
-        for(int i=0;i<this.getCourses().size();i++){
+    public int spareIndex(boolean Sem2){
+        int i=0;
+        if(Sem2){
+            i=4;
+        }
+        for(;i<this.getCourses().size();i++){
             if(this.getCourse(i).isSpare()){
                 return i;
             }
