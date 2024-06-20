@@ -7,6 +7,7 @@ public class Course {
     private String teacher;
     private String room;
     
+    // constructors
     public Course(int s, int b, String n, String tr, String r) {
         semester = s;
         block = b;
@@ -23,6 +24,7 @@ public class Course {
         room = "";
     }
     
+    // getters
     public int getSemester() {
         return semester;
     }
@@ -44,6 +46,7 @@ public class Course {
         return room;
     }
     
+    // setters
     public void setSemester(int s) {
         semester = s;
     }
@@ -64,10 +67,12 @@ public class Course {
         room = r;
     }
 
+    // for debugging purposes
     public String toString() {
         return "- " + name + ", " + semester + ", " + block + ", " + teacher + ", " + room + "\n";
     }
 
+    // check if the course is a spare
     public boolean isSpare(){
         return name.contains("SPAR");
     }

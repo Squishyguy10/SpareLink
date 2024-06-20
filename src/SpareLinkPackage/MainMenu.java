@@ -194,6 +194,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_importButtonActionPerformed
     
+    // search bar
     private ArrayList<DataSearch> search(String search){
         int dataLimit = 7;
         ArrayList<DataSearch> list = new ArrayList<>();
@@ -214,7 +215,7 @@ public class MainMenu extends javax.swing.JFrame {
     return list;
     }
     
-
+    // history (does not work anymore though)
     private void removeHistory(String text){
         for(int i=0; i<history.size();i++){
             String d=history.get(i);
@@ -233,19 +234,22 @@ public class MainMenu extends javax.swing.JFrame {
         return false;
         }
    
-    
+    // getting the file
     public static File getFile(){
         return file;
     }
+    // closing window
     public void close(){
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
     }
 
+    // get spreadsheet data
     public void SearchSheet(File file) throws EncryptedDocumentException, IOException{
         dataList = SpreadsheetReader.getStudentList(file.getName());
     }
 
+    // display student name and get student
     public static Student getData(String name){
         for(Student s : dataList){
             if(s.getName().equals(name)){

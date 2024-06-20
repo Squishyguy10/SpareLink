@@ -32,7 +32,7 @@ public class DataSearch {
     }
 
     /**
-     * @param story the story to set
+     * @param story the store to set
      */
     public void setStory(boolean story) {
         this.story = story;

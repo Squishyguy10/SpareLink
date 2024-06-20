@@ -27,6 +27,7 @@ public class SearchItem extends javax.swing.JPanel {
         
     }
     
+    // searching history (currently bugged)
     private void setData(DataSearch data){
         addEventMouse(this);
         addEventMouse(text);
@@ -42,25 +43,25 @@ public class SearchItem extends javax.swing.JPanel {
         }
     }
     
+    // if mouse is clicked
     private void addEventMouse(Component com){
         com.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseEntered(MouseEvent me){
-                   setBackground(new Color(194,195,196));
+                setBackground(new Color(194,195,196));
             }
             @Override
             public void mouseExited(MouseEvent me){
-                  setBackground(Color.WHITE);
+                setBackground(Color.WHITE);
             }
-                });
-        
+        });
     }
-        private ActionListener eventClick;
-        private ActionListener eventRemove;
-        public void addEvent(ActionListener eventClick, ActionListener eventRemove){
-            this.eventClick = eventClick;
-            this.eventRemove = eventRemove;
-        }
+    private ActionListener eventClick;
+    private ActionListener eventRemove;
+    public void addEvent(ActionListener eventClick, ActionListener eventRemove){
+        this.eventClick = eventClick;
+        this.eventRemove = eventRemove;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

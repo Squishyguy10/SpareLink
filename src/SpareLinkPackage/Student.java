@@ -11,6 +11,7 @@ public class Student {
     private int grade;
     private ArrayList<Course> courses = new ArrayList<>();
     
+    // constructors
     public Student(String n, String gen, int sn, int gr) {
         name = n;
         gender = gen;
@@ -27,6 +28,7 @@ public class Student {
         courses.clear();
     }
     
+    // getters
     public String getName() {
         return name;
     }
@@ -55,6 +57,8 @@ public class Student {
         return courses.size();
     }
     
+
+    // setters
     public void setName(String n) {
         name = n;
     }
@@ -75,6 +79,7 @@ public class Student {
         courses.add(c);
     }
 
+    // sort courses (increasing semester, increasing block)
     public void sortCourses() {
         Collections.sort(courses, new Comparator<Course>() {
             @Override
@@ -89,6 +94,7 @@ public class Student {
         });
     }
 
+    // get the block that has a spare (-1 if no spare)
     public int spareIndex(boolean Sem2){
         int i=0;
         if(Sem2){
@@ -102,6 +108,7 @@ public class Student {
         return -1;
     }
 
+    // for debugging purposes
     public String toString() {
         String temp = studentNumber + ", " + name + ", " + grade + ", " + gender + "\n";
         for(Course c : courses) {

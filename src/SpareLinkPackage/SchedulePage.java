@@ -38,6 +38,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
      */
     public SchedulePage(String name) {
         initComponents();
+        // title
         this.setTitle("SpareLink - "+name);
         studentData = MainMenu.getData(name);
         System.out.println(studentData);
@@ -46,6 +47,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         Thread t = new Thread(this);
         t.start();
         
+        // blocks
         blockA.add(blockAPanel);
         blockA.add(blockAPanel1);
         blockB.add(blockBPanel);
@@ -65,6 +67,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         writeDayNum();
         
     }
+    // displaying the day and semester based on current time
     public void writeDayNum(){
         String s ="";
         LocalDate currentDate = LocalDate.now();
@@ -83,37 +86,42 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     }
     
     public void setCourses(ArrayList<JPanel> block, int index){
+        // commented out code is for test cases
+        
         //Sem2
         LocalDate currentDate = LocalDate.now();
         //Sem1
         //LocalDate currentDate = LocalDate.of(2024, 12, 19);
+        // to calculate semester 2
         LocalDate febFirst = LocalDate.of(currentDate.getYear(), 2, 1);
         LocalDate julyFirst = LocalDate.of(currentDate.getYear(), 7, 1);
         if (currentDate.isAfter(febFirst) && currentDate.isBefore(julyFirst)) {
             isSem2=true;
-            index+=4;
+            index+=4; // this is how the courses are stored
         } else{
             isSem2=false;
         }
+        // display text in the blocks
         for(JPanel panel : block){  
             for(int i=0;i<panel.getComponents().length;i++){
-                    JLabel label = (JLabel) panel.getComponent(i);
-                    switch (i) {
-                        case 2:
-                            label.setText(studentData.getCourse(index).getName());
-                            break;
-                        case 1:
-                            label.setText(studentData.getCourse(index).getTeacher());
-                            break;
-                        case 0:
-                            label.setText(studentData.getCourse(index).getRoom());
-                            break;
-                    }
+                JLabel label = (JLabel) panel.getComponent(i);
+                switch (i) {
+                    case 2:
+                        label.setText(studentData.getCourse(index).getName());
+                        break;
+                    case 1:
+                        label.setText(studentData.getCourse(index).getTeacher());
+                        break;
+                    case 0:
+                        label.setText(studentData.getCourse(index).getRoom());
+                        break;
                 }
             }
         }
+    }
     
     public void spareCheck(){
+        // test cases
         LocalDate currentDate = LocalDate.now();
         //Day 1 
         //int dayOfMonth = (currentDate.getDayOfMonth())%2;
@@ -131,8 +139,9 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         // 2:30
         LocalTime currentTime = LocalTime.of(13,00);
         int currentBlock = CheckTime.getBlock(currentTime,dayOfMonth);
-        int spareBlock = studentData.spareIndex(isSem2)%4;
+        int spareBlock = studentData.spareIndex(isSem2)%4; // mod 4 so it says within blocks A-D (0-3 because 0-indexed)
         dayOfMonth = dayOfMonth-1;
+        // changing the border colour
         if(dayOfMonth==-1){
             dayOfMonth=1;
         }
@@ -179,7 +188,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+        // initializing every button
         returnButton = new javax.swing.JButton();
         titleText = new javax.swing.JLabel();
         timeText = new javax.swing.JLabel();
@@ -236,12 +245,11 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 try {
                     returnButtonActionPerformed(evt);
                 } catch (EncryptedDocumentException | IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
-
+        // changing text positioning, size, and font
         titleText.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         titleText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleText.setText("STUDENT NAME");
@@ -267,6 +275,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         classRoomNum9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         classRoomNum9.setText("Class Room #");
 
+        // block positioning 
         javax.swing.GroupLayout blockAPanelLayout = new javax.swing.GroupLayout(blockAPanel);
         blockAPanel.setLayout(blockAPanelLayout);
         blockAPanelLayout.setHorizontalGroup(
@@ -291,6 +300,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        // background colour
         blockCPanel.setBackground(new java.awt.Color(255, 255, 255));
         blockCPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         blockCPanel.setPreferredSize(new java.awt.Dimension(300, 150));
@@ -555,7 +565,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("Day 2 ");
-
+        // display time blocks
         timeText1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         timeText1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         timeText1.setText("8:55-10:10");
@@ -573,7 +583,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         timeText4.setText("1:40-2:55");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/Logo_Small.png"))); // NOI18N
-
+        
+        // adding the blocks created to the panel
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -684,12 +695,13 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    // return button to go back to previous page
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) throws EncryptedDocumentException, IOException {//GEN-FIRST:event_returnButtonActionPerformed
-        // TODO add your handling code here:
         close();
         MainMenu menu = new MainMenu();
         menu.setVisible(true);
     }//GEN-LAST:event_returnButtonActionPerformed
+    // close window button
     public void close(){
         WindowEvent closeWindow = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(closeWindow);
@@ -697,12 +709,9 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     /**
      * @param args the command line arguments
      */
+    // main program
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        // try and catch for errors of buttons, spreadsheet, and displaying
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -729,7 +738,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration
     private javax.swing.JPanel blockAPanel;
     private javax.swing.JPanel blockAPanel1;
     private javax.swing.JPanel blockBPanel;
@@ -773,8 +782,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel timeText3;
     private javax.swing.JLabel timeText4;
     private javax.swing.JLabel titleText;
-    // End of variables declaration//GEN-END:variables
 
+    // to update the time accordingly
     @Override
     public void run() {
         while(true){
