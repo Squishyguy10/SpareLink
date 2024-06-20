@@ -83,8 +83,8 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     }
     
     public void setCourses(ArrayList<JPanel> block, int index){
-        //LocalDate currentDate = LocalDate.now();
-        LocalDate currentDate = LocalDate.of(2024, 12, 19);
+        LocalDate currentDate = LocalDate.now();
+        //LocalDate currentDate = LocalDate.of(2024, 12, 19);
         LocalDate febFirst = LocalDate.of(currentDate.getYear(), 2, 1);
         LocalDate julyFirst = LocalDate.of(currentDate.getYear(), 7, 1);
         if (currentDate.isAfter(febFirst) && currentDate.isBefore(julyFirst)) {
@@ -113,58 +113,45 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     
     public void spareCheck(){
         LocalDate currentDate = LocalDate.now();
-        int dayOfMonth = (currentDate.getDayOfMonth())%2;
+        int dayOfMonth = (currentDate.getDayOfMonth()+1)%2;
         Border redBorder = BorderFactory.createLineBorder(Color.RED, 3);
         Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 3);
         LocalTime currentTime = LocalTime.now();
-        int currentBlock = CheckTime.getBlock(currentTime,dayOfMonth);
+        int currentBlock = CheckTime.getBlock(LocalTime.of(14,40),dayOfMonth);
         int spareBlock = studentData.spareIndex(isSem2)%4;
-        
+        dayOfMonth = dayOfMonth-1;
+        if(dayOfMonth==-1){
+            dayOfMonth=1;
+        }
         if(currentBlock==-1){
         } else if(currentBlock != spareBlock){
             switch(currentBlock){
                 case 0:
-                    for(JPanel panel : blockA){
-                        panel.setBorder(redBorder);
-                    }
+                    blockA.get(dayOfMonth).setBorder(redBorder);
                     break;
                 case 1:
-                    for(JPanel panel : blockB){
-                        panel.setBorder(redBorder);
-                    }
+                    blockB.get(dayOfMonth).setBorder(redBorder);
                     break;
                 case 2:
-                    for(JPanel panel : blockC){
-                        panel.setBorder(redBorder);
-                    }
+                    blockC.get(dayOfMonth).setBorder(redBorder);
                     break;
                 case 3:
-                    for(JPanel panel : blockD){
-                        panel.setBorder(redBorder);
-                    }
+                    blockD.get(dayOfMonth).setBorder(redBorder);
                     break;
             }
         } else if(currentBlock == spareBlock){
             switch(currentBlock){
                 case 0:
-                    for(JPanel panel : blockA){
-                        panel.setBorder(greenBorder);
-                    }
+                    blockA.get(dayOfMonth).setBorder(greenBorder);
                     break;
                 case 1:
-                    for(JPanel panel : blockB){
-                        panel.setBorder(greenBorder);
-                    }
+                    blockB.get(dayOfMonth).setBorder(greenBorder);
                     break;
                 case 2:
-                    for(JPanel panel : blockC){
-                        panel.setBorder(greenBorder);
-                    }
+                    blockC.get(dayOfMonth).setBorder(greenBorder);
                     break;
                 case 3:
-                    for(JPanel panel : blockD){
-                        panel.setBorder(greenBorder);
-                    }
+                    blockD.get(dayOfMonth).setBorder(greenBorder);
                     break;
             }
         }
