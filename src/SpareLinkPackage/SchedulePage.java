@@ -83,7 +83,9 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     }
     
     public void setCourses(ArrayList<JPanel> block, int index){
+        //Sem2
         LocalDate currentDate = LocalDate.now();
+        //Sem1
         //LocalDate currentDate = LocalDate.of(2024, 12, 19);
         LocalDate febFirst = LocalDate.of(currentDate.getYear(), 2, 1);
         LocalDate julyFirst = LocalDate.of(currentDate.getYear(), 7, 1);
@@ -113,11 +115,22 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     
     public void spareCheck(){
         LocalDate currentDate = LocalDate.now();
+        //Day 1 
+        //int dayOfMonth = (currentDate.getDayOfMonth())%2;
+        //Day 2 
         int dayOfMonth = (currentDate.getDayOfMonth()+1)%2;
         Border redBorder = BorderFactory.createLineBorder(Color.RED, 3);
         Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 3);
-        LocalTime currentTime = LocalTime.now();
-        int currentBlock = CheckTime.getBlock(LocalTime.of(14,40),dayOfMonth);
+        //LocalTime currentTime = LocalTime.now();
+        //9:30
+        //LocalTime currentTime = LocalTime.of(9,30);
+        //10:30
+        //LocalTime currentTime = LocalTime.of(10,30);
+        // During Lunch
+        //LocalTime currentTime = LocalTime.of(11,40);
+        // 2:30
+        LocalTime currentTime = LocalTime.of(13,00);
+        int currentBlock = CheckTime.getBlock(currentTime,dayOfMonth);
         int spareBlock = studentData.spareIndex(isSem2)%4;
         dayOfMonth = dayOfMonth-1;
         if(dayOfMonth==-1){
