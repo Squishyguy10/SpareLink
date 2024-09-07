@@ -23,7 +23,8 @@ import org.apache.poi.EncryptedDocumentException;
  * @author avih2
  */
 public class MainMenu extends javax.swing.JFrame {
-    static File file = new File("sampleFile.xlsx");
+    static File file = new File("");
+    
     
     /**
      * Creates new form MainMenu
@@ -37,11 +38,14 @@ public class MainMenu extends javax.swing.JFrame {
     
     public MainMenu() throws EncryptedDocumentException, IOException {
         initComponents();
-        
+        FileMemoryManager.clearFile();
 
         this.setTitle("SpareLink");
+        File rememberedFile = FileMemoryManager.loadFile();
+        if (rememberedFile != null && rememberedFile.exists()) {
+            SearchSheet(rememberedFile);
+        }
         
-        SearchSheet(file);
         menu = new JPopupMenu();
         search = new PanelSearch();
         menu.setBorder(BorderFactory.createLineBorder(new Color(164, 164, 164)));
@@ -190,6 +194,7 @@ public class MainMenu extends javax.swing.JFrame {
         chooser.showOpenDialog(null);
         file = chooser.getSelectedFile();
         if(file!=null){
+            FileMemoryManager.saveFile(file);
             SearchSheet(file);
         }
     }//GEN-LAST:event_importButtonActionPerformed

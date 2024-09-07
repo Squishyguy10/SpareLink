@@ -113,7 +113,7 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
                         label.setText(studentData.getCourse(index).getTeacher());
                         break;
                     case 0:
-                        label.setText(studentData.getCourse(index).getRoom());
+                        label.setText("Rm. "+studentData.getCourse(index).getRoom());
                         break;
                 }
             }
@@ -123,21 +123,10 @@ public class SchedulePage extends javax.swing.JFrame implements Runnable {
     public void spareCheck(){
         // test cases
         LocalDate currentDate = LocalDate.now();
-        //Day 1 
-        //int dayOfMonth = (currentDate.getDayOfMonth())%2;
-        //Day 2 
         int dayOfMonth = (currentDate.getDayOfMonth()+1)%2;
         Border redBorder = BorderFactory.createLineBorder(Color.RED, 3);
         Border greenBorder = BorderFactory.createLineBorder(Color.GREEN, 3);
-        //LocalTime currentTime = LocalTime.now();
-        //9:30
-        //LocalTime currentTime = LocalTime.of(9,30);
-        //10:30
-        //LocalTime currentTime = LocalTime.of(10,30);
-        // During Lunch
-        //LocalTime currentTime = LocalTime.of(11,40);
-        // 2:30
-        LocalTime currentTime = LocalTime.of(13,00);
+        LocalTime currentTime = LocalTime.now();
         int currentBlock = CheckTime.getBlock(currentTime,dayOfMonth);
         int spareBlock = studentData.spareIndex(isSem2)%4; // mod 4 so it says within blocks A-D (0-3 because 0-indexed)
         dayOfMonth = dayOfMonth-1;
