@@ -6,4 +6,4 @@
 
 # Inscrutions
 
-Unzip the folder and open =SpareLink.jar= to get started. Ensure your spreadsheet is in the folder and ends with ".xlsx". The program comes preloaded with =sampleFile.xlsx= to demonstrate formatting, when adding a new spreadsheet, delete this file. Also, make sure you have the latest version of Java installed to run the application. *This program is in beta and may have bugs and glitches.*
+Unzip the folder and open **SpareLink.jar** to get started. Ensure your spreadsheet is in the folder and ends with *".xlsx"*. The program comes preloaded with **sampleFile.xlsx** to demonstrate formatting, when adding a new spreadsheet, delete this file. Also, make sure you have the latest version of Java installed to run the application. *This program is in beta and may have bugs and glitches.*
