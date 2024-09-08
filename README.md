@@ -2,7 +2,7 @@
 
 **SpareLink** is an application designed to simplify the display of students' schedules, helping to keep track of their whereabouts throughout the day. It takes in a spreadsheet and displays all the students' classes for the semester, including both even and odd days, and highlights whether they should be in class or not.
 
-**Download Here:** 
+**Download Here:** [SpareLink.zip](https://github.com/user-attachments/files/16920263/SpareLink.zip)
 
 # Inscrutions
 
